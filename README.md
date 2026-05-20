@@ -91,16 +91,15 @@ CheckStyle requires a configuration file to be specified which indicates which r
 By default, the plugin is bundled with configurations used by Sun and Google.
 For this lab, we'll be using our own configuration in `mystyle.xml`.
 
-Note: If you didn't install the CheckStyle plugin when installing IntelliJ, do so now in the Settings menu.
+Note: If you didn't install the CheckStyle plugin when installing IntelliJ, do so now in the Settings -> Plugins menu.
 
-- Configure CheckStyle to use `mystyle.xml`.
-
-You can do this by going to Settings and then finding the Tools submenu.
-Find CheckStyle and click on it. Press the + button under Configuration File to add
-a new configuration file.
-For Description, put something like "CSC207 Checks".
-Select use local file and browse to find `mystyle.xml`. Press Next and then Finish.
-Then check the box beside your newly added configuration to make it active, click Apply, and then OK.
+To, configure CheckStyle to use `mystyle.xml`, follow the steps below:
+- Go to Settings -> Tools
+- Find CheckStyle and click on it. 
+- Press the + button under Configuration File to add a new configuration file.
+- For Description, put something like "CSC207 Checks".
+- Select use local file and browse to find `mystyle.xml`. Press Next and then Finish.
+- Then check the box beside your newly added configuration to make it active, click Apply, and then OK.
 
 Now, errors reported by CheckStyle should show up just like any other code inspections
 in IntelliJ. The CheckStyle checks will start with "CheckStyle:", so they are
