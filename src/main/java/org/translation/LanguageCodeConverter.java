@@ -14,7 +14,8 @@ import java.util.Map;
 public class LanguageCodeConverter {
 
     // TODO Task: pick appropriate instance variables to store the data necessary for this class
-
+    private final Map<String, String> codeToLanguage = new HashMap<>();
+    private final Map<String, String> languageToCode = new HashMap<>();
     /**
      * Default constructor which will load the language codes from "language-codes.txt"
      * in the resources folder.
@@ -36,9 +37,17 @@ public class LanguageCodeConverter {
 
             // TODO Task: use lines to populate the instance variable
             //           tip: you might find it convenient to create an iterator using lines.iterator()
+            for (int i = 1; i < lines.size(); i++) {
+                String[] parts = lines.get(i).split("\t");
+                String language = parts[0];
+                String code = parts[1];
 
+                languageToCode.put(language, code);
+                codeToLanguage.put(code, language);
+            }
         // TODO Checkstyle: '}' on next line should be alone on a line.
-        } catch (IOException | URISyntaxException ex) {
+        }
+        catch (IOException | URISyntaxException ex) {
             throw new RuntimeException(ex);
         }
 
@@ -51,7 +60,7 @@ public class LanguageCodeConverter {
      */
     public String fromLanguageCode(String code) {
         // TODO Task: update this code to use your instance variable to return the correct value
-        return code;
+        return codeToLanguage.get(code);
     }
 
     /**
@@ -61,7 +70,7 @@ public class LanguageCodeConverter {
      */
     public String fromLanguage(String language) {
         // TODO Task: update this code to use your instance variable to return the correct value
-        return language;
+        return languageToCode.get(language);
     }
 
     /**
@@ -70,6 +79,6 @@ public class LanguageCodeConverter {
      */
     public int getNumLanguages() {
         // TODO Task: update this code to use your instance variable to return the correct value
-        return 0;
+        return codeToLanguage.size();
     }
 }

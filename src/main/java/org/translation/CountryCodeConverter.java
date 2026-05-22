@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
-// TODO CheckStyle: Wrong lexicographical order for 'java.util.HashMap' import (remove this comment once resolved)
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
 
 /**
  * This class provides the service of converting country codes to their names.
@@ -15,6 +15,8 @@ import java.util.Map;
 public class CountryCodeConverter {
 
     // TODO Task: pick appropriate instance variable(s) to store the data necessary for this class
+    private final Map<String, String> codeToCountry = new HashMap<>();
+    private final Map<String, String> countryToCode = new HashMap<>();
 
     /**
      * Default constructor which will load the country codes from "country-codes.txt"
@@ -36,6 +38,14 @@ public class CountryCodeConverter {
                     .getClassLoader().getResource(filename).toURI()));
 
             // TODO Task: use lines to populate the instance variable(s)
+            for (int i = 1; i < lines.size(); i++) {
+                String[] parts = lines.get(i).split("\t");
+                String country = parts[0];
+                String code = parts[1].toLowerCase();
+
+                countryToCode.put(country, code);
+                codeToCountry.put(code, country);
+            }
 
         }
         catch (IOException | URISyntaxException ex) {
@@ -51,7 +61,8 @@ public class CountryCodeConverter {
      */
     public String fromCountryCode(String code) {
         // TODO Task: update this code to use an instance variable to return the correct value
-        return code;
+
+        return codeToCountry.get(code.toLowerCase());
     }
 
     /**
@@ -61,7 +72,7 @@ public class CountryCodeConverter {
      */
     public String fromCountry(String country) {
         // TODO Task: update this code to use an instance variable to return the correct value
-        return country;
+        return countryToCode.get(country).toLowerCase();
     }
 
     /**
@@ -70,6 +81,6 @@ public class CountryCodeConverter {
      */
     public int getNumCountries() {
         // TODO Task: update this code to use an instance variable to return the correct value
-        return 0;
+        return codeToCountry.size();
     }
 }
